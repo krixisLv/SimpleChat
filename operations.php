@@ -6,6 +6,8 @@
  * Time: 1:16 AM
  */
 
+// THIS FILE IS MEANT TO RESPOND TO AJAX REQUESTS
+
 require_once "handlers/SessionsHandler.php";
 SessionsHandler::startSession();
 SessionsHandler::checkAccess("operations.php");
