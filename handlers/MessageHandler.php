@@ -41,7 +41,7 @@ class MessageHandler {
                     "VALUES (".$conn->escapeString($chat_id).", ".$conn->escapeString($user_id).", '".$conn->escapeString($message)."', ".$conn->escapeString(getMicrotime()).")";
 
         $conn->exec($query);
-
+        UserHandler::setUserActivity();
         return true;
     }
 }
