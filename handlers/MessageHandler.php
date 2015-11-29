@@ -18,7 +18,9 @@ class MessageHandler {
         $query = "SELECT (SELECT users.username FROM users WHERE id = user_id) AS username, message FROM messages WHERE chat_id = ". $conn->escapeString($chat_id);
 
         if(!$from_beginning){
-            $query .= " AND insert_time >= (SELECT last_activity FROM user_chat_rel WHERE user_id = ".$conn->escapeString($user_id)." AND chat_id = ".$conn->escapeString($chat_id).") ORDER BY id ASC";
+            $query .= " AND user_id != " . $conn->escapeString($user_id).
+                    " AND insert_time >= (SELECT last_activity FROM user_chat_rel WHERE user_id = ".$conn->escapeString($user_id). " AND chat_id = ".$conn->escapeString($chat_id).")".
+                    " ORDER BY id ASC";
         }
 
         $result = $conn->query($query);
